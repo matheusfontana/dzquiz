@@ -39,9 +39,9 @@ class AnswerTable extends AbstractMigration
 		$idSurvey = $this->table('answer', array('engine' => 'InnoDB'));
 		$idSurvey->addColumn('text', 'string', array('limit' => 200))
 			->addColumn('question_id', 'integer', array('limit' => 11))
-			->addColumn('template_survey_id', 'integer', array('limit' => 11))
+			->addColumn('identity_survey_id', 'integer', array('limit' => 11))
 			->addForeignKey('question_id', 'question', 'id', array('delete' => 'RESTRICT', 'update' => 'RESTRICT'))
-			->addForeignKey('template_survey_id', 'template_survey', 'id', array('delete' => 'RESTRICT', 'update' => 'RESTRICT'))
+			->addForeignKey('identity_survey_id', 'identity_survey', 'id', array('delete' => 'RESTRICT', 'update' => 'RESTRICT'))
 			->save();
 	}
 
