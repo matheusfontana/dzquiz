@@ -1,68 +1,69 @@
-Symfony Standard Edition
-========================
+# Q: WHOAMI?
+#### A: DZQUIZ!
 
-Welcome to the Symfony Standard Edition - a fully-functional Symfony
-application that you can use as the skeleton for your new applications.
+### Requisitos
 
-For details on how to download and get started with Symfony, see the
-[Installation][1] chapter of the Symfony Documentation.
+* PHP 5.5.9 + Symfony 2.8
+* MySQL 5.5
+* Git
+* [Composer](https://getcomposer.org/)
 
-What's inside?
---------------
+### Instalação
 
-The Symfony Standard Edition is configured with the following defaults:
+#### Clonar o projeto
+```sh
+$ git clone https://github.com/matheusfontana/whoami.git
+```
+**Dentro do diretório do projeto...**
 
-  * An AppBundle you can use to start coding;
+#### Executar o composer (evitando memory leak)
+```sh
+$ php -d memory_limit=-1 /bin/composer install
+```
+**Caso o Symfony pergunte por parâmetros de BD, alteraremos isso depois ;)**
 
-  * Twig as the only configured template engine;
+#### Inicializar o Phinx
 
-  * Doctrine ORM/DBAL;
+```sh
+$ bin/phinx init
+```
+**Este comando irá gerar o arquivo phinx.yml na raiz do projeto**
 
-  * Swiftmailer;
+#### Alterar o phinx.yml e o app/config/parameters.yml
 
-  * Annotations enabled for everything.
+```sh
+$ vim phinx.yml
+```
+**Alterar o parâmetro** ***name*** **da seção** ***development*** **para** ***dzquiz***, **sem aspas. Os outros parâmetros dependem de seu servidor ;)**
 
-It comes pre-configured with the following bundles:
+```sh
+$ vim app/config/parameters.yml
+```
+**Alterar o parâmetro** ***database_name*** **da seção** ***parameters*** **para** ***dzquiz***, **sem aspas. Os outros parâmetros iniciados por** ***database*** **dependem de seu servidor ;)**
 
-  * **FrameworkBundle** - The core Symfony framework bundle
+#### Criar a estrutura de banco de dados
+```sh
+$ ./bin/phinx migrate -v
+```
 
-  * [**SensioFrameworkExtraBundle**][6] - Adds several enhancements, including
-    template and routing annotation capability
+#### Alimentar o banco de dados com alguns dados default, através de seeds.
+```sh
+$ ./bin/phinx seed:run -v -s TypeSurveySeed -s TemplateSurveySeed -s IdentitySurveySeed -s QuestionSeed -s AnswerSeed
+```
 
-  * [**DoctrineBundle**][7] - Adds support for the Doctrine ORM
+#### Startar o server
+```sh
+$ php app/console server:run
+```
 
-  * [**TwigBundle**][8] - Adds support for the Twig templating engine
+### Acessar o website
 
-  * [**SecurityBundle**][9] - Adds security by integrating Symfony's security
-    component
+http://localhost:8000/app_dev.php/
 
-  * [**SwiftmailerBundle**][10] - Adds support for Swiftmailer, a library for
-    sending emails
+##### Fim! :)
 
-  * [**MonologBundle**][11] - Adds support for Monolog, a logging library
 
-  * **WebProfilerBundle** (in dev/test env) - Adds profiling functionality and
-    the web debug toolbar
 
-  * **SensioDistributionBundle** (in dev/test env) - Adds functionality for
-    configuring and working with Symfony distributions
 
-  * [**SensioGeneratorBundle**][13] (in dev/test env) - Adds code generation
-    capabilities
 
-  * **DebugBundle** (in dev/test env) - Adds Debug and VarDumper component
-    integration
 
-All libraries and bundles included in the Symfony Standard Edition are
-released under the MIT or BSD license.
-
-Enjoy!
-
-[1]:  https://symfony.com/doc/2.8/book/installation.html
-[6]:  https://symfony.com/doc/current/bundles/SensioFrameworkExtraBundle/index.html
-[7]:  https://symfony.com/doc/2.8/book/doctrine.html
-[8]:  https://symfony.com/doc/2.8/book/templating.html
-[9]:  https://symfony.com/doc/2.8/book/security.html
-[10]: https://symfony.com/doc/2.8/cookbook/email.html
-[11]: https://symfony.com/doc/2.8/cookbook/logging/monolog.html
-[13]: https://symfony.com/doc/2.8/bundles/SensioGeneratorBundle/index.html
