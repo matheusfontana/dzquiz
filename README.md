@@ -3,7 +3,7 @@
 
 ### Requisitos
 
-* PHP 5.5.9 + Symfony 2.8
+* PHP 5.5.9 (Ubuntu 14.04) + Symfony 2.8
 * MySQL 5.5
 * Git
 * [Composer](https://getcomposer.org/)
