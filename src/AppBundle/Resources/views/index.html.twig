@@ -1,0 +1,77 @@
+{# app/Resources/views/index.html.twig #}
+
+{% extends 'AppBundle::base.html.twig' %}
+
+{% block content %}
+<div class="jumbotron">
+	<div class="container">
+		<h1>DZQUIZ</h1>
+		<p>Aqui você descobrirá qual série de TV mais se parece com você!</p>
+		<p><a class="btn btn-danger btn-lg" href="{{ path('new_survey')}}" role="button">Começar agora! »</a></p>
+	</div>
+</div>
+<section id="surveys">
+	<div class="container">
+		<div class="row">
+			<div class="col-xs-12 col-sm-6 col-lg-6">
+				<h2>Quizes em aberto</h2>
+				<div class="table-responsive">
+					<table class="table table-bordered table-condensed">
+						<thead>
+							<tr>
+								<th>ID</th>
+								<th>Tipo de quiz</th>
+							</tr>
+						</thead>
+						<tbody>
+							{% if opened is empty %}
+								<tr>
+									<td colspan="2">Não existem quizes em aberto!</td>
+								</tr>
+							{% else %}
+								{% for open in opened %}
+									<tr>
+										<td>{{ open.getId() }}</td>
+										<td>{{ open.getTemplateSurvey().getName() }}</td>
+									</tr>
+								{% endfor %}
+							{% endif %}
+						</tbody>
+					</table>
+				</div>
+			</div>
+			<div class="col-xs-12 col-sm-6 col-lg-6">
+				<h2>Quizes finalizados</h2>
+				<div class="table-responsive">
+					<table class="table table-bordered table-condensed">
+						<thead>
+							<tr>
+								<th>ID</th>
+								<th>Tipo de quiz</th>
+							</tr>
+						</thead>
+						<tbody>
+							{% if closed is empty %}
+								<tr>
+									<td colspan="2">Não existem quizes finalizados!</td>
+								</tr>
+							{% else %}
+								{% for close in closed %}
+									<tr>
+										<td>{{ close.getId() }}</td>
+										<td>{{ close.getTemplateSurvey().getName() }}</td>
+									</tr>
+								{% endfor %}
+							{% endif %}
+						</tbody>
+					</table>
+				</div>
+			</div>
+		</div>
+		<hr>
+		<footer class="text-center">
+			Matheus S. Fontana | <a target="_blank" href="https://github.com/matheusfontana/whoami">https://github.com/matheusfontana/whoami</a>
+		</footer>
+	</div>
+</section>
+{% endblock %}

@@ -45,6 +45,53 @@ class Survey extends ServiceBase
 	}
 
 	/**
+	 * Gets a specific survey
+	 *
+	 * @param string $surveyId survey code
+	 * @return string $result
+	 */
+	public function getSurvey($surveyId)
+	{
+		$manager = $this->getDoctrine()->getManager('default');
+
+		try{
+			
+			$surveys = $manager->getRepository('AppBundle:Survey')
+								->findOneBy(array('id' => $surveyId));
+
+			return $surveys;
+
+		} catch (Exception $e) {
+			throw $e;
+		}
+	}
+
+	/**
+	 * Gets a list of surveys
+	 *
+	 * @param string $surveyId survey code
+	 * @return string $result
+	 */
+	public function getSurveys()
+	{
+		$manager = $this->getDoctrine()->getManager('default');
+
+		try{
+			
+			$surveys = $manager->getRepository('AppBundle:Survey')
+								->findBy(array(),
+										array(),
+										10,
+										0
+									);
+			return $surveys;
+
+		} catch (Exception $e) {
+			throw $e;
+		}
+	}
+
+	/**
 	 * Gets a survey identity
 	 *
 	 * @param string $surveyId survey code
@@ -131,6 +178,5 @@ class Survey extends ServiceBase
 			throw $e;
 		}
 
-		return $identity;
 	}
 }

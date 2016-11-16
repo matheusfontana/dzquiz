@@ -24,7 +24,7 @@ class SurveyAnswer
     /**
      * @var \AppBundle\Entity\Survey
      *
-     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Survey")
+     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Survey", inversedBy="surveyAnswers" )
      * @ORM\JoinColumns({
      *   @ORM\JoinColumn(name="survey_id", referencedColumnName="id")
      * })

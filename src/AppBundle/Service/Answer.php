@@ -69,4 +69,43 @@ class Answer extends ServiceBase
 			throw $e;
 		}
 	}
+
+	/**
+	 * Get all possible answers of a question
+	 * 
+	 * @param  string $question Question id
+	 * @param  string $survey   Survey id
+	 * @return Entity\Answer $answers
+	 */
+	public function getAllAnswersOfQuestion($question, $survey)
+	{
+		$manager = $this->getDoctrine()->getManager('default');
+
+		try {
+
+			$questionData = $manager->getRepository('AppBundle:Question')
+					->findOneBy(array('id' => $question));
+
+			if (empty($questionData)) {
+				throw new Exception("Invalid question has been informed", 404);
+			}
+
+			$surveyData = $manager->getRepository('AppBundle:Survey')
+					->findOneBy(array('id' => $survey));
+
+			if (empty($surveyData)) {
+				throw new Exception("Invalid survey has been informed", 404);
+			}
+
+			//making an array of objects "shuffleable" 
+			$answers = iterator_to_array($questionData->getAnswers());
+			shuffle($answers);
+
+			return $answers;
+
+		} catch (Exception $e) {
+			throw $e;
+		}
+	}
+
 }

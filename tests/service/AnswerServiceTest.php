@@ -15,22 +15,16 @@ class AnswerServiceTest extends KernelTestCase
 			->get('app.service.answer');
 	}
 
-	public function testGetAnswersOfQuestion()
+	public function testGetAllAnswersOfQuestion()
 	{
-		$templateSurveyId = '1';
+		$survey = 1;
+		$i = 1;
+		for($i;$i<=5;$i++){
+			$object = $this->service->getAllAnswersOfQuestion($i, $survey);
 
-		//$object = $this->service->generateSurvey($templateSurveyId);
+			$this->assertCount(5, $object);
+		}
 		
-		//$this->assertInstanceOf('AppBundle\Entity\Survey', $object);
-	}
-
-	public function testGetAnswersOfIdentity()
-	{
-		$templateSurveyId = '1';
-
-		//$object = $this->service->generateSurvey($templateSurveyId);
-		
-		//$this->assertInstanceOf('AppBundle\Entity\Survey', $object);
 	}
 
 	public function testAnswerQuestion()

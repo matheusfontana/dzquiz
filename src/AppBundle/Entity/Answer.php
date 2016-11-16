@@ -41,13 +41,12 @@ class Answer
     /**
      * @var \AppBundle\Entity\Question
      *
-     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Question")
+     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Question", inversedBy="answers")
      * @ORM\JoinColumns({
      *   @ORM\JoinColumn(name="question_id", referencedColumnName="id")
      * })
      */
     private $question;
-
 
 
     /**

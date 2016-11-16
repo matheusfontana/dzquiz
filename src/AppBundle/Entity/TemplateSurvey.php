@@ -3,6 +3,8 @@
 namespace AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Doctrine\Common\Collections\Collection;
+use Doctrine\Common\Collections\ArrayCollection;
 
 /**
  * TemplateSurvey
@@ -38,8 +40,20 @@ class TemplateSurvey
      */
     private $typeSurvey;
 
+    /**
+     * @var \AppBundle\Entity\Question
+     *
+     * @ORM\OneToMany(targetEntity="AppBundle\Entity\Question", mappedBy="templateSurvey")
+     */
+    protected $questions;
 
-
+    /**
+     *  Class constructor
+     */
+    public function __construct(){
+        $this->questions = new ArrayCollection();
+    }
+    
     /**
      * Set name
      *
@@ -96,5 +110,15 @@ class TemplateSurvey
     public function getTypeSurvey()
     {
         return $this->typeSurvey;
+    }
+
+    /**
+     * Get questions
+     * 
+     * @return \AppBundle\Entity\Question
+     */
+    public function getQuestions()
+    {
+        return $this->questions;
     }
 }

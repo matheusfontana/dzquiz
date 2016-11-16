@@ -1,0 +1,11 @@
+{# app/Resources/views/surveyIdentity.html.twig #}
+
+{% extends 'AppBundle::base.html.twig' %}
+
+{% block content %}
+<div class="container" id="survey_detail">
+	<h1>Você é: {{ identity.getName() }} </h1>
+	<h4>{{ identity.getDescription() }}</h4>
+	<span><a class="btn btn-danger" href="{{ path('site_index')}}" role="button">Voltar para home »</a></span>
+</div>
+{% endblock %}

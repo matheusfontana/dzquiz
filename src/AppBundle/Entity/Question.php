@@ -4,6 +4,9 @@ namespace AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 
+use Doctrine\Common\Collections\Collection;
+use Doctrine\Common\Collections\ArrayCollection;
+
 /**
  * Question
  *
@@ -38,13 +41,26 @@ class Question
     /**
      * @var \AppBundle\Entity\TemplateSurvey
      *
-     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\TemplateSurvey")
+     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\TemplateSurvey", inversedBy="questions")
      * @ORM\JoinColumns({
      *   @ORM\JoinColumn(name="template_survey_id", referencedColumnName="id")
      * })
      */
     private $templateSurvey;
 
+    /**
+     * @var \AppBundle\Entity\Answer
+     *
+     * @ORM\OneToMany(targetEntity="AppBundle\Entity\Answer", mappedBy="question")
+     */
+    protected $answers;
+
+    /**
+     *  Class constructor
+     */
+    public function __construct(){
+        $this->answers = new ArrayCollection();
+    }
 
 
     /**
@@ -127,5 +143,30 @@ class Question
     public function getTemplateSurvey()
     {
         return $this->templateSurvey;
+    }   
+
+
+    /**
+     * Set Answers
+     * 
+     * @return \AppBundle\Entity\Question
+     */
+    public function setAnswers(array $answers = null)
+    {
+        $this->answers = $answers;
+
+         return $this;
     }
+
+
+    /**
+     * Get Answers
+     * 
+     * @return \AppBundle\Entity\Answer
+     */
+    public function getAnswers()
+    {
+        return $this->answers;
+    }
+
 }
