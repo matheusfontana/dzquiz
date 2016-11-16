@@ -20,26 +20,26 @@ $ git clone https://github.com/matheusfontana/whoami.git
 ```sh
 $ php -d memory_limit=-1 /bin/composer install
 ```
-**Caso o Symfony pergunte por parâmetros de BD, alteraremos isso depois ;)**
+Caso o Symfony pergunte por parâmetros de BD, alteraremos isso depois ;)
 
 #### - Inicializar o Phinx
 
 ```sh
 $ bin/phinx init
 ```
-**Este comando irá gerar o arquivo phinx.yml na raiz do projeto**
+Este comando irá gerar o arquivo phinx.yml na raiz do projeto
 
 #### - Alterar o phinx.yml e o app/config/parameters.yml
 
 ```sh
 $ vim phinx.yml
 ```
-**Alterar o parâmetro** ***name*** **da seção** ***development*** **para** ***dzquiz***, **sem aspas. Os outros parâmetros dependem de seu servidor ;)**
+Alterar o parâmetro ***name*** da seção ***development*** para ***dzquiz***, sem aspas. Os outros parâmetros dependem de seu servidor ;)
 
 ```sh
 $ vim app/config/parameters.yml
 ```
-**Alterar o parâmetro** ***database_name*** **da seção** ***parameters*** **para** ***dzquiz***, **sem aspas. Os outros parâmetros iniciados por** ***database*** **dependem de seu servidor ;)**
+Alterar o parâmetro ***database_name*** da seção ***parameters*** para ***dzquiz***, sem aspas.  Os outros parâmetros dependem de seu servidor ;)
 
 #### - Criar a estrutura de banco de dados
 ```sh
