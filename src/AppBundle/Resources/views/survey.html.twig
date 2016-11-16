@@ -1,0 +1,39 @@
+{# app/Resources/views/survey.html.twig #}
+
+{% extends 'AppBundle::base.html.twig' %}
+
+{% block content %}
+<div class="container" id="survey_detail">
+	<h3 class="page-header">{{ template.getName() }} </h3>
+	<form action="{{path('save_data')}}" method="post" accept-charset="utf-8">
+		{% for question in questions %}
+			<div class="row">
+				<div class="col-xs-12">
+					<div class="panel panel-default">
+					  <div class="panel-heading">
+						<h3 class="panel-title">{{ question.getText() }}</h3>
+					  </div>
+					  <div class="panel-body">
+						{% for answer in question.answers %}
+							<div class="checkbox">
+							  <label>
+							    <input type="radio" name="question[{{question.getId()}}]" value="{{answer.getId()}}">
+							    {{ answer.getText() }}
+							  </label>
+							</div>
+						{% endfor %}
+					  </div>
+					</div>
+				</div>
+			</div>
+		{% endfor %}
+		<input type="hidden" name="surveyId" value="{{surveyId}}">
+		<div class="form-group">
+		    <div class="col-sm-5">
+		      <button type="submit" class="btn btn-primary">Salvar</button>
+		      <span><a class="btn btn-danger" href="{{ path('site_index')}}" role="button">Voltar para home »</a></span>
+		    </div>
+	  	</div>		
+	</form>
+</div>
+{% endblock %}

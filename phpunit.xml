@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<phpunit colors="true" 
+		backupGlobals="true"
+     	backupStaticAttributes="false"
+        bootstrap="./app/autoload.php"
+        cacheTokens="false"
+        convertErrorsToExceptions="true"
+        convertNoticesToExceptions="true"
+        convertWarningsToExceptions="true"
+        forceCoversAnnotation="false"
+        mapTestClassNameToCoveredClassName="false"        
+        processIsolation="false"
+        stopOnError="false"
+        stopOnFailure="false"
+        stopOnIncomplete="false"
+        stopOnSkipped="false"
+        testSuiteLoaderClass="PHPUnit_Runner_StandardTestSuiteLoader"
+     	verbose="true">
+    <testsuites>
+        <testsuite name="Service">
+            <directory>./tests/service/</directory>
+        </testsuite>
+    </testsuites>
+    <php>
+        <server name="KERNEL_DIR" value="./app/" />
+    </php>
+</phpunit>

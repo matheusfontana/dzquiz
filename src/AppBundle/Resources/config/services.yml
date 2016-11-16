@@ -1,0 +1,8 @@
+services:
+    app.service.survey:
+        class: AppBundle\Service\Survey
+        arguments: [@doctrine, @service_container]
+    app.service.answer:
+        class: AppBundle\Service\Answer
+        arguments: [@doctrine, @service_container]
+
